@@ -1,51 +1,39 @@
-
-int getDistance(int distance) {
-	
-	// Loop until button pressed
-	while (getButtonPress(buttonEnter) == 0 )  // this will fail once the button is enter pressed. 
-	{
-		
-		displayCenteredBigTextLine(4,"Distance = %dcm", distance);
-		
-		if (getButtonPress(buttonUp)) {
-			distance = distance+1;
-			displayCenteredBigTextLine(4,"Distance = %dcm", distance);
-		}
-		else if (getButtonPress(buttonDown)) 
-		{
-			
-			if(distance != 0)
-			{
-				distance = distance-1;
-				displayCenteredBigTextLine(4,"Distance = %dcm", distance);
-			}
-		}
-		
-		// Wait 20 ms, this gives us 50 readings per second
-		sleep(20);
-	}
-	return distance;
-	
-}
-
-void drive(long nMotorRatio, long dist, long power)
+void turn90(long nMotorRatio, long power)
 {
-	setMotorSyncEncoder(motorB, motorC, nMotorRatio, dist, power);
-	sleep(10000);
+	setMotorSyncEncoder(motorB, motorC, nMotorRatio, 1000, power);
+	sleep(1400);
 }
 
+void goForwards()
+{
+	setMotorSyncEncoder(motorB, motorC, 0, 100, 100);
+}
 
 task main()
 {
-	// Use this if you want to use the back button as well
-	// Not advisable.
-	//setBlockBackButton(true);
+	// Configure the ultrasonic sensor
+	SensorType[S2] = sensorEV3_Ultrasonic;
+	int n = 0;
+	int previousDistance = 100;
 	
-	int distance = 0;
-	int randomNum = random(100);
-	
-	displayCenteredTextLine(1, "Pressed button:");
-	displayCenteredBigTextLine(6,"Final Dist = %dcm", distance = getDistance(distance));
-	sleep(1000);
-	drive(0,distance * 10,randomNum);
+	while (n < 3)
+	{
+		goForwards();
+		// Read the distance to the nearest object in front of the sensor
+		int distance = getUSDistance(S2);
+		
+		
+		// Check if the distance is less than a threshold value
+		if (distance < 25) // Replace 30 with the distance at which you want the robot to detect the wall
+		{
+			turn90(25,50);
+			n=n+1;
+		}
+		
+		
+		
+		// Wait a short time before checking the sensor again
+		wait1Msec(100);
+		
+	}
 }
