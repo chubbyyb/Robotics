@@ -1,0 +1,43 @@
+#pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
+#pragma config(Sensor, S1,     colorSensor,    sensorEV3_Color, modeEV3Color_Color)
+#pragma config(Sensor, S4,     sonarSensor,    sensorEV3_Ultrasonic)
+#pragma config(Motor,  motorA,          armMotor,      tmotorEV3_Large, PIDControl, encoder)
+#pragma config(Motor,  motorB,          leftMotor,     tmotorEV3_Large, PIDControl, driveLeft, encoder)
+#pragma config(Motor,  motorC,          rightMotor,    tmotorEV3_Large, PIDControl, driveRight, encoder)
+
+void drive(long power)
+{
+	setMotorSpeed(rightMotor, power);
+	setMotorSpeed(leftMotor, power);
+}
+
+task main()
+{
+	int n = 0;
+	bool onLine = false;
+
+	while(true)
+	{
+		while(SensorValue(S1) > 4)
+		{
+			onLine = false;
+			drive(50);
+			displayCenteredTextLine(1, "No black");
+		}
+
+		while(SensorValue(S1) < 4)
+		{
+			drive(0);
+			displayCenteredTextLine(1, "Detected Black");
+			drive(10);
+			if(SensorValue(S1) < 4 & onLine == false)
+			{
+				onLine = true;
+				n=n+1;
+				displayCenteredBigTextLine(5,"Lines = %d", n);
+			}
+			sleep(500);
+		}
+	}
+
+}
