@@ -8,33 +8,33 @@
 
 void drive(long power)
 {
-      setMotorSpeed(rightMotor, power);
-      setMotorSpeed(leftMotor, power);
+    setMotorSpeed(rightMotor, power);
+    setMotorSpeed(leftMotor, power);
 }
 
 float generateThreshold()
 {
-      int n = 0;
-      float threshold = 0;
-      int countLight = 0;
+    int n = 0;
+    float threshold = 0;
+    int countLight = 0;
 
-      while(n < 2)
-      {
+    while(n < 2)
+    {
 
-            if(getButtonPress(buttonEnter) == 1)
-            {
-                  sleep(1000);
-                  displayCenteredBigTextLine(n*2,"Light = %d", SensorValue(S1));
-                  countLight = countLight+SensorValue(S1);
-                  n=n+1;
-            }
+            if(getButtonPress(buttonEnter) == 1)
+            {
+                  sleep(1000);
+                  displayCenteredBigTextLine(n*2,"Light = %d", SensorValue(S1));
+                  countLight = countLight+SensorValue(S1);
+                  n=n+1;
+            }
 
-      }
+      }
 
-      threshold = countLight/n;
-      displayCenteredTextLine(5, "Average = %f",threshold);
-      sleep(2000);
-      return threshold;
+      threshold = countLight/n;
+      displayCenteredTextLine(5, "Average = %f",threshold);
+      sleep(2000);
+      return threshold;
 
 }
 
@@ -42,21 +42,21 @@ float generateThreshold()
 
 task main()
 {
-      float threshold = generateThreshold()
+      float threshold = generateThreshold()
 
-      while(true)
-      {
-            while(SensorValue(S1) > threshold)
-            {
-                  drive(50);
-                  displayCenteredTextLine(8, "No black");
-            }
+      while(true)
+      {
+            while(SensorValue(S1) > threshold)
+            {
+                  drive(50);
+                  displayCenteredTextLine(8, "No black");
+            }
 
-            while(SensorValue(S1) < threshold)
-            {
-                  drive(0);
-                  displayCenteredTextLine(8, "Detected Black");
-            }
-      }
+            while(SensorValue(S1) < threshold)
+            {
+                  drive(0);
+                  displayCenteredTextLine(8, "Detected Black");
+            }
+      }
 
 }
