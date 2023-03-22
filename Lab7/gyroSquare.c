@@ -1,8 +1,4 @@
-// CONFIG
-/* 
-Author: Keith Salhani
-Date: 08/03/2023
-*/
+
 
 #pragma config(Sensor, S1,     touchSensor,    sensorEV3_Touch)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
