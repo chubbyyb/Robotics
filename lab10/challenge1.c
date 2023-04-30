@@ -1,6 +1,12 @@
 /*
 QEV3 Bot Sim. 
-Navigates X,Y coordinate plane
+Navigates X,Y coordinate plane.
+Using a gyro and a color sensor.
+Displays current coordiantes on screen.
+
+This program begins and calls getCords
+You enter the starting coordinates of your robot
+The robot will travel to (5,5)
 */
 
 // Turned 1 == Right
@@ -8,8 +14,10 @@ Navigates X,Y coordinate plane
 // Turned 3 == Left
 // Turned 4 == Up
 
-// This is just locationfinder.c with one additional check to see if the robot is at the target location
-// Oh yeah also I added a function to get the x and y coordinates of the target location
+// This is locationfinder.c with the following changes:
+// * getCords function will get the starting position
+// * Robot will always end on position (5,5)
+// * Additional check to ensure if the robot is currently on the target position, kill all process
 
 int getCords(int target, char axis) {
 	
@@ -96,7 +104,7 @@ task main()
 	y = getCords(y, 'Y'); // Get target Y
 	
 	
-	if(x > targetX)
+	if(x > targetX) // If the robots position is greater than the target position, turn the robot around and adjust facing position.
 	{
 		turn90(90+90);
 		turned = 3;
