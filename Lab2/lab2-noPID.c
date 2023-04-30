@@ -1,3 +1,11 @@
+/* 
+The code defines several functions, each of which controls the movement of the robot in a specific way: 
+turning 90 degrees left or right, 
+moving forward or in reverse for 1 second, 
+or swinging left or right 90 degrees.
+*/
+
+
 #pragma config(Sensor, S1,     touchSensor,    sensorEV3_Touch)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
 #pragma config(Sensor, S3,     colorSensor,    sensorEV3_Color, modeEV3Color_Color)
@@ -18,6 +26,10 @@
     MotorC        	leftMotor           LEGO EV3 Motor	  Left side motor
     MotorB       	rightMotor          LEGO EV3 Motor	  Right side motor (reversed)
 ------------------------------------------------------------------------------------------------*/
+
+
+
+
 
 void turn90degreesLeft()
 {
