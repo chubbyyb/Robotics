@@ -1,3 +1,8 @@
+/*
+This code generates a threshold based on two values. You put the light sensor on the light value, and the dark value.
+It will average them out and return the threshold
+*/
+
 #pragma config(Sensor, S1,     colorSensor,    sensorEV3_Color)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
 #pragma config(Sensor, S4,     sonarSensor,    sensorEV3_Ultrasonic)
@@ -12,7 +17,7 @@ float generateThreshold()
 {
   int n = 0;
   float threshold = 0;
-  int countLight = 0;
+  int countLight = 0; // sum of values
 
   while(n < 2)
   {
@@ -20,15 +25,15 @@ float generateThreshold()
     {
       sleep(1000);
       displayCenteredBigTextLine(n*2,"Light = %d", SensorValue(S1));
-      countLight = countLight+SensorValue(S1);
+      countLight = countLight+SensorValue(S1); // add the value
       n=n+1;
     }
   }
 
-  threshold = countLight/n;
+  threshold = countLight/n; // average it 
   displayCenteredTextLine(5, "Average = %f",threshold);
   sleep(2000);
-  return threshold;
+  return threshold; // return it
 
 }
 
