@@ -1,3 +1,11 @@
+/*
+This code will follow a black straight line using a simple tracking algorithm.
+If you are on the line, it will turn left,
+If you are not, it will turn right.
+
+It generates a threshold of black and white by avergaing out the two values in order to make sure it detects the line
+*/
+
 #pragma config(Sensor, S1,     colorSensor,    sensorEV3_Color)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
 #pragma config(Sensor, S4,     sonarSensor,    sensorEV3_Ultrasonic)
