@@ -1,3 +1,8 @@
+/*
+This program drives the robot until it detects black. Then it will stop.
+generateThreshold is used to identify colors. You calibrate at the beginning of the program
+*/
+
 #pragma config(Sensor, S1,     colorSensor,    sensorEV3_Color)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
 #pragma config(Sensor, S4,     sonarSensor,    sensorEV3_Ultrasonic)
