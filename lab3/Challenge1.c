@@ -1,3 +1,7 @@
+/*
+This code is designed to avoid a set map that has obstacles in the way
+*/
+
 #pragma config(Sensor, S3,     touchSensor,    sensorEV3_Touch)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
 #pragma config(Sensor, S1,     colorSensor,    sensorEV3_Color, modeEV3Color_Color)
@@ -30,6 +34,7 @@ void moveRobot(long nMotorRatio, long power)
 
 void turn90(long nMotorRatio, long power)
 {
+	// Sequence to turn 90 degrees
 	waitUntilMotorStop(leftMotor);
 	waitUntilMotorStop(rightMotor);
 	sleep(1400);
@@ -44,25 +49,25 @@ void turn90(long nMotorRatio, long power)
 
 task main()
 {
-	SensorType[S4] = sensorEV3_Ultrasonic;
+	SensorType[S4] = sensorEV3_Ultrasonic; // Initialize the ultrasonic Sensor
 	int n = 0;
 
-	while(n != 3)
+	while(n != 3) //  The map only has 3 obstacles and we are required to stop after the third
 	{
 		int distance = getUSDistance(S4);
 		
-		if(getUSDistance(S4) > 50)
+		if(getUSDistance(S4) > 50) // If we are far from an object, continue driving
 		{
 			moveRobot(0,100);
 		}
 
-		if(getUSDistance(S4) < 50)
+		if(getUSDistance(S4) < 50) // If we see an object, turn 90 degrees
 		{
 			turn90(-25,50);
-			n = n+1;
+			n = n+1; // Increment
 		}
 		
-		if(getTouchValue(S3) == 1)
+		if(getTouchValue(S3) == 1) // If we crash
 		{
 			moveRobot(0,-100);
 		}
