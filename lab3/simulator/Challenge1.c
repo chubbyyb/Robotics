@@ -1,3 +1,6 @@
+// This is a copy of challenge1.c but using the QEV3 simulator
+
+
 void turn90(long nMotorRatio, long power)
 {
 	setMotorSyncEncoder(motorB, motorC, nMotorRatio, 1000, power);
