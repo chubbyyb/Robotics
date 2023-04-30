@@ -1,3 +1,9 @@
+/*
+This program is challenge1.c from Lab3, except using a gyro.
+This code is designed to avoid a set map that has obstacles in the way.
+*/
+
+
 //#pragma config(Sensor, S3,     touchSensor,    sensorEV3_Touch)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
 #pragma config(Sensor, S3,     colorSensor,    sensorEV3_Color, modeEV3Color_Color)
