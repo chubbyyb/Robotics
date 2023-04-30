@@ -1,6 +1,14 @@
 /*
 QEV3 Bot Sim. 
-Navigates X,Y coordinate plane
+Navigates X,Y coordinate plane.
+Using a gyro and a color sensor.
+Displays current coordiantes on screen.
+
+This program begins on position (3,1)
+The robot will travel to (3,7)
+
+The robot will beep on every enterance of a new coordinate position
+
 */
 
 // Turned 1 == Right
@@ -157,10 +165,10 @@ task main()
 				//displayCenteredBigTextLine(8,"Lines = %d", n);
 				if(turned == 1)
 				{
-					x = x+1;
-					playTone(440,10);
+					x = x+1; // Increment current position
+					playTone(440,10); // Beep when entering new square
 				}
-				else{	x = x-1; playTone(440,10);}
+				else{	x = x-1; playTone(440,10);} // Beep when entering new square, decrement current position
 				displayCenteredTextLine(2, "X:%d Y:%d",x,y);
 			} // Keep track of current Y position
 			else if(SensorValue[S3] < threshold && onLine == false && (turned == 2 || turned == 4))
@@ -170,10 +178,10 @@ task main()
 				//displayCenteredBigTextLine(8,"Lines = %d", n);
 				if(turned == 2)
 				{
-					y = y-1;
-					playTone(440,10);
+					y = y-1; // Decrement current position
+					playTone(440,10); // Beep when entering new square
 				}
-				else{	y = y+1; playTone(440,10);}
+				else{	y = y+1; playTone(440,10);} // Beep when entering new square, Increment current position
 				displayCenteredTextLine(2, "X:%d Y:%d",x,y);
 			}
 			sleep(10);
