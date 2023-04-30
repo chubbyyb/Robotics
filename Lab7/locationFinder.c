@@ -1,6 +1,13 @@
 /*
 QEV3 Bot Sim. 
-Navigates X,Y coordinate plane
+Navigates X,Y coordinate plane.
+Using a gyro and a color sensor.
+Displays current coordiantes on screen.
+
+This program begins and will ask you for coordinates, either (4,1) or (5,6),
+When the coordinates are inputted, your robot will travel to them.
+
+The robot should be starting in (1,4)
 */
 
 // Turned 1 == Right
@@ -99,7 +106,7 @@ task main()
 		targetY = 1;	
 	}
 	
-	if(x > targetX)
+	if(x > targetX) // Error checking for future updates.
 	{
 		turn90(90+90);
 		turned = 3;
