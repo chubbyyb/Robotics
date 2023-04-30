@@ -1,3 +1,9 @@
+/*
+This program counts the amount of lines that the robot passes over.
+Every time it detects a line, it increments a variable and slows down until its off of it.
+generateThreshold is used to generate an average light amount in order to detect a line.
+*/
+
 #pragma config(Sensor, S1,     colorSensor,    sensorEV3_Color)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
 #pragma config(Sensor, S4,     sonarSensor,    sensorEV3_Ultrasonic)
