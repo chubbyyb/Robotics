@@ -1,4 +1,10 @@
-
+/*
+This program drives in a square/triangle, given a distance for the perimeter.
+The getDistance function is used to get the distance of travel,
+square is used to drive in a square,
+triangle is used to drive in a triangle,
+turn90 is used to turn the robot given an angle.
+*/
 
 #pragma config(Sensor, S1,     touchSensor,    sensorEV3_Touch)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
