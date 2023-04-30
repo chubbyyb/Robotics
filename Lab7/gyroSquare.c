@@ -1,6 +1,6 @@
 /*
-This program drives in a square/triangle, given a distance for the perimeter.
-The getDistance function is used to get the distance of travel,
+This program drives in a square/triangle, using a gyro, given a distance for the perimeter.
+The getDistance function is used to get the perimeter length of travel,
 square is used to drive in a square,
 triangle is used to drive in a triangle,
 turn90 is used to turn the robot given an angle.
