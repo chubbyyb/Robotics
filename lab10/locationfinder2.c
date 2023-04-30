@@ -8,7 +8,6 @@ This program begins on position (3,1)
 The robot will travel to (3,7)
 
 The robot will beep on every enterance of a new coordinate position
-
 */
 
 // Turned 1 == Right
@@ -16,6 +15,9 @@ The robot will beep on every enterance of a new coordinate position
 // Turned 3 == Left
 // Turned 4 == Up
 
+// This is locationfinder.c with the following changes:
+// * getCords function replaced with set coordinates
+// * Robot will beep on enterance of every new square
 
 
 void drive(long power)
@@ -73,10 +75,10 @@ task main()
 	
 	
 	
-	if(x > targetX)
+	if(x > targetX) // If starting position is greater than target positon, turn around
 	{
 		turn90(90+90);
-		turned = 3;
+		turned = 3; // adjust facing position
 	}
 	
 	// Target Y is always reached second, so if targetY is not reached, keep the code running
