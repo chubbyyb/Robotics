@@ -1,12 +1,27 @@
 /*
 QEV3 Bot Sim. 
-Navigates X,Y coordinate plane
+Navigates X,Y coordinate plane.
+Using a gyro and a color sensor.
+Displays current coordiantes on screen.
+
+This program begins on position (3,1)
+The robot will travel to (3,7)
+The robot will stop for 5 seconds while beeping
+The robot will then travel to position (1,1)
+
+The robot will beep on every enterance of a new coordinate position
 */
 
 // Turned 1 == Right
 // Turned 2 == Down
 // Turned 3 == Left
 // Turned 4 == Up
+
+// This is locationfinder.c with the following changes:
+// * getCords function replaced with set coordinates
+// * Robot will beep on enterance of every new square
+// * Robot will always end on position (1,1)
+// * Robot will stop and beep when the first position is reached
 
 
 
@@ -65,10 +80,10 @@ task main()
 	
 	
 	
-	if(x > targetX)
+	if(x > targetX) // If the current position is greater than the target positon, flip the robot
 	{
 		turn90(90+90);
-		turned = 3;
+		turned = 3; // adjust facing position
 	}
 	
 	// Target Y is always reached second, so if targetY is not reached, keep the code running
@@ -181,10 +196,10 @@ task main()
 				//displayCenteredBigTextLine(8,"Lines = %d", n);
 				if(turned == 1)
 				{
-					x = x+1;
-					playTone(440,10);
+					x = x+1; // Increment positon
+					playTone(440,10); // Play tone on entry of new square
 				}
-				else{	x = x-1; playTone(440,10);}
+				else{	x = x-1; playTone(440,10);} // Decrement positon, Play tone on entry of new square
 				displayCenteredTextLine(2, "X:%d Y:%d",x,y);
 			} // Keep track of current Y position
 			else if(SensorValue[S3] < threshold && onLine == false && (turned == 2 || turned == 4))
@@ -194,10 +209,10 @@ task main()
 				//displayCenteredBigTextLine(8,"Lines = %d", n);
 				if(turned == 2)
 				{
-					y = y-1;
-					playTone(440,10);
+					y = y-1; // Decrement positon
+					playTone(440,10); // Play tone on entry of new square
 				}
-				else{	y = y+1; playTone(440,10);}
+				else{	y = y+1; playTone(440,10);} // Increment positon, Play tone on entry of new square
 				displayCenteredTextLine(2, "X:%d Y:%d",x,y);
 			}
 			sleep(10);
