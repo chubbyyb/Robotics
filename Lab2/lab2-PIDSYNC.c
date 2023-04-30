@@ -1,3 +1,9 @@
+/* PID USED
+The code defines several functions, each of which controls the movement of the robot: 
+moveRobot moves the robot in a given configuration, 
+Square moves the robot in a square.
+*/
+
 #pragma config(Sensor, S1,     touchSensor,    sensorEV3_Touch)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
 #pragma config(Sensor, S3,     colorSensor,    sensorEV3_Color, modeEV3Color_Color)
