@@ -1,3 +1,7 @@
+/*
+This code travels a certain distance at a random speed using the QEV3 Simulator
+*/
+
 
 int getDistance(int distance) {
 	
@@ -37,9 +41,6 @@ void drive(long nMotorRatio, long dist, long power)
 
 task main()
 {
-	// Use this if you want to use the back button as well
-	// Not advisable.
-	//setBlockBackButton(true);
 	
 	int distance = 0;
 	int randomNum = random(100);
