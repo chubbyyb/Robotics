@@ -1,6 +1,11 @@
 /*
 QEV3 Bot Sim. 
-Navigates X,Y coordinate plane
+Navigates X,Y coordinate plane.
+Using a gyro and a color sensor.
+Displays current coordiantes on screen.
+
+This program begins and calls getCords: This will allow you to input your starting position
+Then it will call getCords again: This will allow you to input your target position
 */
 
 // Turned 1 == Right
@@ -8,7 +13,17 @@ Navigates X,Y coordinate plane
 // Turned 3 == Left
 // Turned 4 == Up
 
-// This is based on locationfinder.c, it also has collission detection and avoidance
+// This is locationfinder.c with the following changes:
+// * getCords function will get the starting position, and the target position
+// * Additional check to ensure if the robot is currently on the target position, kill all process
+// * Object Detection & Avoidance (pain)
+// * Extra error checks
+
+// * Revamped the coordinate traversal system, OLD: get to X pos, then Y pos
+//  NEW: Go to x first, if cant reach, go to y, then to x, then to y, then to x, no idea how it works anymore, thinking about it sends me down a spiral, but it works, im not touching it
+//  Go to x, wall in the way, go to Y, wall in the way, go to x, (and make sure you go back to y when reached x). I hope this was a sufficient explanation of the spaghetti below.
+
+
 
 int getCords(int target, char axis[]) {
 	
@@ -91,10 +106,14 @@ task main()
 	bool atTargetY = false;
 	int targetX = 1;
 	int targetY = 7;
-	x = getCords(x,"Start X"); // Get target X
+	
+	// Get current position
+	x = getCords(x,"Start X"); 
 	sleep(100); // Wait 100 ms prevent enter button from being pressed twice
-	y = getCords(y, "Start Y"); // Get target Y
+	y = getCords(y, "Start Y"); 
 	sleep(100);
+	
+	// Get target position
 	targetX = getCords(targetX, "Target X");
 	sleep(100);
 	targetY = getCords(targetY, "Target Y");
