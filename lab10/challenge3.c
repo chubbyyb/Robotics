@@ -8,8 +8,7 @@ Navigates X,Y coordinate plane
 // Turned 3 == Left
 // Turned 4 == Up
 
-// This is just locationfinder.c with one additional check to see if the robot is at the target location
-// Oh yeah also I added a function to get the x and y coordinates of the target location
+// This is based on locationfinder.c, it also has collission detection and avoidance
 
 int getCords(int target, char axis[]) {
 	
