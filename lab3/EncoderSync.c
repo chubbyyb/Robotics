@@ -1,3 +1,8 @@
+/* USES PID 
+This code makes the robot drive in a square given a perimeter using setMotorSyncEncoder function which can somewhat measure distance
+*/
+
+
 #pragma config(Sensor, S1,     touchSensor,    sensorEV3_Touch)
 #pragma config(Sensor, S2,     gyroSensor,     sensorEV3_Gyro, modeEV3Gyro_RateAndAngle)
 #pragma config(Sensor, S3,     colorSensor,    sensorEV3_Color, modeEV3Color_Color)
@@ -20,12 +25,12 @@
 
 void drive(long nMotorRatio, long dist, long power)
 {
-	setMotorSyncEncoder(leftMotor, rightMotor, nMotorRatio, dist, power);
+	setMotorSyncEncoder(leftMotor, rightMotor, nMotorRatio, dist, power); // Drive given config
 }
 
 void turn90(long nMotorRatio, long power)
 {
-	setMotorSyncEncoder(leftMotor, rightMotor, nMotorRatio, 800, power);
+	setMotorSyncEncoder(leftMotor, rightMotor, nMotorRatio, 800, power); // Turn 90 degrees
 }
 
 task main()
